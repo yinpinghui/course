@@ -7,7 +7,8 @@
     "dev": "nodemon build/server.js",
     "lint": "tslint -c ./tslint.json -t verbose src/**/*.ts",
     "start": "tsc -w && npm run dev",
-    "tsc:w": "tsc -w"
+    "tsc:w": "tsc -w",
+    "postinstall": "typings install"
   },
   "author": "ian",
   "license": "ISC",
