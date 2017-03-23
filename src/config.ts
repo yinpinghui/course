@@ -1,4 +1,5 @@
 export const config: any = {
+  isCluster : false,
   username: "root",
   password: "123456",
   database: "yun_db",
