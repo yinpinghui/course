@@ -73,7 +73,8 @@ class Server {
   };
 
   start(): void {
-    if (cluster.isMaster && config.isCluster) {
+    if (cluster.isMaster ) {
+      console.log(__dirname + '/models')
       var sequelize = new Sequelize({
           name : config['database'],
           dialect: 'mysql',

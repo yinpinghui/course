@@ -1,9 +1,9 @@
 export const config: any = {
   isCluster : false,
-  username: "root",
-  password: "123456",
-  database: "yun_db",
-  host: "127.0.0.1",
+  username: "yangweiye",
+  password: "1998yang",
+  database: "yunxiaoxin_db",
+  host: "192.168.1.216",
   port: 3306,
   dialect: "mysql",
   logging: true,

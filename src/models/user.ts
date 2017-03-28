@@ -1,20 +1,35 @@
-import {Table, Column, Model,CreatedAt,UpdatedAt,DeletedAt} from 'sequelize-typescript';
+import {Table,  Model,CreatedAt,UpdatedAt,DeletedAt,PrimaryKey, Column, AutoIncrement, BelongsToMany,
+DefaultScope, Scopes} from 'sequelize-typescript';
 
-@Table
-class User extends Model<User> {
+@Table({
+  tableName: 'uc_user'
+})
+export class User extends Model<User> {
+  
+  @PrimaryKey
+  @AutoIncrement
+  @Column
+  id: number;
 
   @Column
-  name: string;
+  fullname: string;
 
   @Column
-  age: number;
+  mobile: string;
+
+  @Column
+  sex : Number ;
+
+  @Column
+  status : Number ;
 
   @CreatedAt
-  creationDate: Date;
+  creation_time: Date;
+
 
   @UpdatedAt
-  updatedOn: Date;
+  updated_time: Date;
   
   @DeletedAt
-  deletionDate: Date;
+  deletion_time: Date;
 }
