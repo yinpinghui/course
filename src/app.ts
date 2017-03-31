@@ -7,7 +7,7 @@ import './globalMiddleWare/ConvertUidMiddleware' //global middleware
 import "./globalMiddleWare/MyErrorHandler"; 
 import {Container} from "typedi";
 import config from './config';
-import  './services/UserManager';
+import {UserManager} from   './services/UserManager';
 
 
 // its important to set container before any operation you do with routing-controllers,
@@ -17,10 +17,6 @@ useContainer(Container);
  * 我们可以用middleware，errorhandler等在这个app.ts里面进行注册
  */ 
 
-
-declare let client : any ;
-
-
 createConnection({
     driver : config.driver,
     entities : [
@@ -28,7 +24,7 @@ createConnection({
     ],
     autoSchemaSync : false
 }).then(async connection =>{
-
+    
     const app = express()
     useExpressServer(app,{
         controllers: [__dirname + "/controllers/**/*{.js,.ts}"]

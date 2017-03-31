@@ -20,6 +20,7 @@
     "reflect-metadata": "^0.1.10",
     "routing-controllers": "^0.6.11",
     "typedi": "^0.4.3",
-    "typeorm": "0.0.11"
+    "typeorm": "0.0.11",
+    "typescript-ioc": "^0.2.7"
   }
 }
