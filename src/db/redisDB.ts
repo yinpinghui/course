@@ -17,5 +17,5 @@ client = client || redis.createClient({
 client.on("connect",function(){
     console.log("connection should show only once")
 })
-console.log("this should show only once")
+
 export default client

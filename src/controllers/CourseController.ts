@@ -22,10 +22,40 @@ export class UserController {
             
         })
         const qb = await this.courseRepository.createQueryBuilder("c")
-        .leftJoinAndSelect("c.author",'author')
-        .leftJoinAndSelect("p.attenances",'attenances')
+        .leftJoinAndSelect("c.creator",'creators')
+        .leftJoinAndSelect("c.attenances",'attenances')
             
         
+        return qb.getMany();
+    }
+    @Post("/api/course")
+    async saveCourses(@Req() request: Request) {
+        const result = await this.entityManager.findAndCount(Course,{
+            
+        })
+        const qb = await this.courseRepository.createQueryBuilder("c")
+        .leftJoinAndSelect("c.author",'author')
+        .leftJoinAndSelect("p.attenances",'attenances')
+        return qb.getMany();
+    }
+    @Post("/api/course/:id")
+    async updateCourses(@Req() request: Request) {
+        const result = await this.entityManager.findAndCount(Course,{
+            
+        })
+        const qb = await this.courseRepository.createQueryBuilder("c")
+        .leftJoinAndSelect("c.author",'author')
+        .leftJoinAndSelect("p.attenances",'attenances')
+        return qb.getOne();
+    }
+    @Get("/api/course/:id")
+    async courseInfo(@Req() request: Request) {
+        const result = await this.entityManager.findAndCount(Course,{
+            
+        })
+        const qb = await this.courseRepository.createQueryBuilder("c")
+        .leftJoinAndSelect("c.author",'author')
+        .leftJoinAndSelect("p.attenances",'attenances')
         return result;
     }
 

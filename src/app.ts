@@ -22,7 +22,7 @@ createConnection({
     entities : [
         __dirname + "/models/*{.js,.ts}"
     ],
-    autoSchemaSync : false
+    autoSchemaSync : true
 }).then(async connection =>{
     
     const app = express()
