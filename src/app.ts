@@ -1,6 +1,9 @@
 /// <reference path="../typings/main.d.ts" />
 import "reflect-metadata";
 import * as express from "express";
+import * as bodyParser from "body-parser";
+import * as cookieParser from "cookie-parser";
+import * as logger from "morgan";
 import {createExpressServer,useExpressServer} from "routing-controllers";
 import {createConnection, useContainer} from "typeorm";
 import './globalMiddleWare/ConvertUidMiddleware' //global middleware
@@ -8,6 +11,7 @@ import "./globalMiddleWare/MyErrorHandler";
 import {Container} from "typedi";
 import config from './config';
 import {UserManager} from   './services/UserManager';
+
 
 
 // its important to set container before any operation you do with routing-controllers,
@@ -26,6 +30,14 @@ createConnection({
 }).then(async connection =>{
     
     const app = express()
+      //use json form parser middlware
+    app.use(bodyParser.json());
+
+    //use query string parser middlware
+    app.use(bodyParser.urlencoded({
+        extended: true
+    }));
+
     useExpressServer(app,{
         controllers: [__dirname + "/controllers/**/*{.js,.ts}"]
         //middlewares: [__dirname + "/middlewares/**/*{.js,.ts}"]
