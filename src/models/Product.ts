@@ -11,11 +11,17 @@ export class Product {
     @PrimaryColumn("int", { generated: true , length:"11",comment:"产品id"})
     id: number; 
 
-    @Column({length:"50",comment:"产品名称",name : 'name'})
+    @Column({length:"50",comment:"产品名称",name : 'name',nullable : false})
     name: string;
+
+    @Column({length:"50",comment:"产品编号", name : 'productNo'})
+    productNo: string;
 
     @Column("text",{comment:"产品描述"})
     desc: string;
+
+    @Column("text",{comment:"用户描述"})
+    userdesc: string;
 
     @Column("int",{comment:"产品价格"})
     price :number
@@ -35,14 +41,11 @@ export class Product {
     @Column("int",{comment:"状态",length:1})
     status : number
 
-    
 
     @CreateDateColumn()
     createdAt: Date;
 
     @UpdateDateColumn()
     updatedAt: Date;
-
-
 
 }

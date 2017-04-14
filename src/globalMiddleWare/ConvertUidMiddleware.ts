@@ -14,7 +14,7 @@ export class ConvertUidMiddleware implements MiddlewareInterface {
         this.userManager = Container.get(UserManager);
     }
     use(request: any, response: any, next?: Function): any {
-        let uid = request.headers.uid ;        
+        let uid = request.headers.uid ;
         this.userManager.getUserById(uid).then(user =>{
             //console.log("middle ware ,user is ",user)
             if(user){

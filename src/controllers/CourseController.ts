@@ -6,7 +6,7 @@ import {Course} from '../models/Course'
 
 //@JsonController()
 @Controller()
-export class UserController {
+export class CourseController {
 
     //private postRepository: Repository<Post>;
     //private userRepository: Repository<User>;
