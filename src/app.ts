@@ -12,6 +12,7 @@ import {Container} from "typedi";
 import config from './config';
 import {UserManager} from   './services/UserManager';
 
+import socketio from "socket.io"
 
 
 // its important to set container before any operation you do with routing-controllers,
@@ -40,9 +41,25 @@ createConnection({
 
     useExpressServer(app,{
         controllers: [__dirname + "/controllers/**/*{.js,.ts}"]
-        //middlewares: [__dirname + "/middlewares/**/*{.js,.ts}"]
     });
+    //此处应该是https或者http，然后借助http进行listen
     app.listen(3001);
+    var io = socketio(app);
+    io.on('connection', function (socket) {
+        socket.on("subscribe",function(room){
+            socket.join(room)
+        })
+        socket.on("chat_message", function(msg){
+            io.emit("chat_message", msg);
+        });
+        socket.on("disconnect",function(){
+            /**
+             * 删除redis的client数据
+             *
+             */
+        })
+        
+    })
     console.log("express server is running on port 3001. Open http://localhost:3001/blogs/");
 }).catch(error => console.log(error));
 
