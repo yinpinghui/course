@@ -3,6 +3,30 @@ import {User} from './User'
 @Entity( 'base_course',{})
 
 //view  https://github.com/typeorm/typeorm/blob/master/src/decorator/options/ColumnOptions.ts
+/**
+ * 课程名称
+ * 课程类型 （直播型， 线上聊天型， 过关答题型）
+ * 课程类别： 一次一建，用完就走，还是不断重复，分第几期，第几期
+ * 设置可见性，
+ * 是否允许别人搜索到我自己的课程
+ * 试听，试看部分
+ * 作者
+ * 课程开始时间
+ * 课程细节
+ * 课程安排，比如每周几节，共多少节
+ * 评价体系
+ * 介绍，图文介绍
+ * 课程类型
+ * 是否付费
+ * 我要咨询
+ * 课程时长
+ * 课程进度
+ * 课程达标
+ * 基本状态，是否开启，是否关闭
+ * lesson怎么算，课节 ， 课时
+ */
+
+
 export class Course {
 
     @PrimaryColumn("int", { generated: true })

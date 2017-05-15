@@ -15,7 +15,12 @@ let redis : any = {
     "userttl": 604800,
     "checkcodettl": 900,
 }
+let http : any = {
+    port : 3001
+
+}
 export default {
     driver : driver,
-    redis : redis
+    redis : redis,
+    http : http
 }
