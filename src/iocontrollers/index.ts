@@ -5,9 +5,10 @@
  * db连接mongodb，redis，mysql，聊天记录放在mongodb里面
  * 
  */
-
+//   https://io.yunxiaoxin.com
 export default (io)=>{
     io.on('connection', function (socket) {
+        console.log("socket is coming ",socket)
         socket.on("subscribe",function(room){
             socket.join(room)
         })

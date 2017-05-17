@@ -16,11 +16,15 @@ let redis : any = {
     "checkcodettl": 900,
 }
 let http : any = {
-    port : 3001
+    port : 80
 
+}
+let https : any = {
+    port : 443
 }
 export default {
     driver : driver,
     redis : redis,
-    http : http
+    http : http,
+    https: https
 }
