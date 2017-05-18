@@ -8,15 +8,17 @@
 //   https://io.yunxiaoxin.com
 export default (io)=>{
     io.on('connection', function (socket) {
-        console.log("socket is coming ",socket)
+        console.log("socket is coming ",socket.id)
         socket.on("subscribe",function(room){
             socket.join(room)
         })
-        socket.on("message", function(msg){
-            io.emit("message", msg);
+        socket.on("msg", function(msg){
+            console.log('msg is ', msg)
+            io.emit("msg", msg);
         });
         
         socket.on("disconnect",function(){
+            console.log(socket.id + " is leaving")
             /**
              * 删除redis的client数据
              *

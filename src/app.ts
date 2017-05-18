@@ -39,18 +39,22 @@ createConnection({
     app.use(bodyParser.urlencoded({
         extended: true
     }));
-
+    app.use('/static',express.static("./static", {
+    //maxAge: '364d'
+    }));
     useExpressServer(app,{
         controllers: [__dirname + "/controllers/**/*{.js,.ts}"]
     });
     //此处应该是https或者http，然后借助http进行listen
     if(process.env.NODE_ENV === 'development'){
-        let https = require("https")
-        let privateKey  = fs.readFileSync('ssl/dev.yunxiaoxin.com.key', 'utf8');
-        let certificate = fs.readFileSync('ssl/dev.yunxiaoxin.com.pem', 'utf8');
+        let privateKey  = fs.readFileSync('./src/ssl/dev.yunxiaoxin.com.key', 'utf8');
+        let certificate = fs.readFileSync('./src/ssl/dev.yunxiaoxin.com.pem', 'utf8');
         let credentials = {key: privateKey, cert: certificate};
-        let httpsServer = https.createServer(credentials, app);
-        httpsServer.listen(config.https.port);
+
+        let server = https.createServer(credentials, app);
+        let io = socketio(server);
+        iocontroller(io)
+        server.listen(config.https.port);
     }else{
         let server = http.createServer(app);
         let io = socketio(server);
