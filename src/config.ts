@@ -10,8 +10,8 @@ let redis : any = {
     host: '127.0.0.1',
     port : '6379',
     password : 'yunxiaoxin_db',
-    db : 11,
-    cachedb : 10,
+    db : 9,
+    cachedb : 10 ,
     "userttl": 604800,
     "checkcodettl": 900,
 }

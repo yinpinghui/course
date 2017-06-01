@@ -6,19 +6,31 @@
  * 
  */
 //   https://io.yunxiaoxin.com
+
+import client from "../db/redisDB"
 export default (io)=>{
     io.on('connection', function (socket) {
         console.log("socket is coming ",socket.id)
-        socket.on("subscribe",function(room){
-            socket.join(room)
+        socket.on("setme",(data)=>{
+            console.log("set me ", data)
+            client.set("socket_" + socket.id, JSON.stringify(data))
         })
-        socket.on("msg", function(msg){
-            console.log('msg is ', msg)
-            io.emit("msg", msg);
+        socket.on("subscribe",function(data){
+            console.log("subscribe is comming ", data);
+            socket.join(data.roomid)            
+        })
+        socket.on("msg", function(_msg){
+            console.log('msg is ', _msg)
+            let user = client.hget(socket.id)
+            let msg = {createTime : new Date(),  to : _msg.to, from : user, content : _msg.content}
+            //monodb save
+            io.to(_msg.to).emit("msg", msg);
         });
         
         socket.on("disconnect",function(){
             console.log(socket.id + " is leaving")
+            socket.leave(roomid)
+            //client.remove(socket.id)
             /**
              * 删除redis的client数据
              *
