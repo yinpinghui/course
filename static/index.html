@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1>chat room </h1>
+    <ul id="messages"></ul>
+    <form action="">
+      <input id="input" autocomplete="off" /><button>Send</button>
+    </form>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+$(function () {
+    var socket = io();
+    $('form').submit(function(){
+    if($('#input').val() == '') {
+        return false;
+    }
+    socket.emit('chat message', $('#input').val());
+    $('#input').val('');
+    return false;
+    });
+    socket.on('chat message', function(msg){
+    $('#messages').append($('<li>').text(msg));
+    });
+});
+</script>
+</body>
+</html>
