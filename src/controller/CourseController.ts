@@ -17,21 +17,27 @@ export class CourseController {
         return result;
     }
     @Get("/api/course/mycreateCourses")
-    async mycreateCourses(@QueryParam("idx") idx=0,@QueryParam("size") size=10) {
+    async mycreateCourses(@Req() req: any,@QueryParam("idx") idx=0,@QueryParam("size") size=10) {
         //倒序
-        let result = await this.courseManager.getMycreateCourses(idx,size)
+        let user = req.user;
+        
+        let result = await this.courseManager.getMycreateCourses(user.id,idx,size)
         return result;
     }
     @Get("/api/course/myCourses")
-    async myCourses(@QueryParam("idx") idx=0,@QueryParam("size") size=10) {    
+    async myCourses(@Req() req: any,@QueryParam("idx") idx=0,@QueryParam("size") size=10) {    
         //倒序
-        let result = await this.courseManager.getMyCourses(idx,size)
+        let user = req.user;
+        let result = await this.courseManager.getMyCourses(user.id,idx,size)
         return result;
     }
 
     @Post("/api/course")
-    async create(@Req() req: Request){
+    async create(@Req() req: any){
         let course = req.body
+        let user = req.user;
+        course.creator_id= user.id
+        console.log(course)
         const _course = new Course(course)
         let  result = await _course.save();
         return result.toJSON();
@@ -42,5 +48,10 @@ export class CourseController {
         const _course = new Course(course)
         let  result = await _course.save();
         return result.toJSON();
+    }
+    @Get("/api/course/:id")
+    async info(@Req() req: Request,@Param("id") id: number) {
+        let  result = await this.courseManager.getCourseById(id)
+        return result;
     }
 }

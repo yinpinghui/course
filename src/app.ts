@@ -20,7 +20,8 @@ sequelize.sync({force: false})
     //console.log("sync  done")
     useContainer(Container);
     createExpressServer({
-        controllers: [__dirname + "/controller/*.ts"]
+        controllers: [__dirname + "/controller/*.ts"],
+        middlewares: [__dirname + "/middleware/*.ts"]
     }).listen(8080);
     console.log("Server is up and running on port 8080. Now send requests to check if everything works.");
 
