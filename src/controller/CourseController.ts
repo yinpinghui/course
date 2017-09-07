@@ -35,9 +35,11 @@ export class CourseController {
     @Post("/api/course")
     async create(@Req() req: any){
         let course = req.body
+        //console.log('course is ', course)
         let user = req.user;
+        //console.log(user)
         course.creator_id= user.id
-        console.log(course)
+        //console.log(course)
         const _course = new Course(course)
         let  result = await _course.save();
         return result.toJSON();

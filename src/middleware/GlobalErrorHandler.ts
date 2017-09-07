@@ -4,6 +4,7 @@ import {Middleware, ExpressErrorMiddlewareInterface} from "routing-controllers";
 export class GlobalErrorHandler implements ExpressErrorMiddlewareInterface {
     error(error: any, request: any, response: any, next: (err: any) => any) {
         let errorMsg = {}
+        
         if(error.httpCode != null ){
            errorMsg =  {
               errorCode:error.httpCode,
@@ -11,12 +12,12 @@ export class GlobalErrorHandler implements ExpressErrorMiddlewareInterface {
               status:error.httpCode
             }
         }
-        if(error.errorCode != null){
+        if(error.statusCode != null){
             //业务异常，status:901
             errorMsg =  {
-              errorCode:error.errorCode,
+              errorCode:error.statusCode,
               errorMsg:error.errorMsg,
-              status:"901"
+              status: error.status
             }
         }
 

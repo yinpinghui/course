@@ -19,10 +19,13 @@ sequelize.sync({force: false})
     //console.log(__dirname + "/controller/*.ts");
     //console.log("sync  done")
     useContainer(Container);
-    createExpressServer({
+    let app = createExpressServer({
         controllers: [__dirname + "/controller/*.ts"],
         middlewares: [__dirname + "/middleware/*.ts"]
-    }).listen(8080);
+    })
+    //app.use(bodyParser.urlencoded({ extended: false }));
+    //app.use(bodyParser.json());
+    app.listen(8080)
     console.log("Server is up and running on port 8080. Now send requests to check if everything works.");
 
 }).catch(error => console.log("Error: ", error));
