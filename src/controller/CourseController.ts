@@ -20,16 +20,15 @@ export class CourseController {
     async mycreateCourses(@Req() req: any,@QueryParam("idx") idx=0,@QueryParam("size") size=10) {
         //倒序
         let user = req.user;
-        
-        let result = await this.courseManager.getMycreateCourses(user.id,idx,size)
-        return result;
+        //let result = await this.courseManager.getMycreateCourses(user.id,idx,size)
+        return [];//result;
     }
     @Get("/api/course/myCourses")
     async myCourses(@Req() req: any,@QueryParam("idx") idx=0,@QueryParam("size") size=10) {    
         //倒序
         let user = req.user;
-        let result = await this.courseManager.getMyCourses(user.id,idx,size)
-        return result;
+        //let result = await this.courseManager.getMyCourses(user.id,idx,size)
+        return []//result;
     }
 
     @Post("/api/course")

@@ -15,17 +15,20 @@ export class CourseManager {
         return result;
     }
     async getMyCourses(uid : any, idx:number, size :number){
-        let result : any= await Course.find({ offset: idx * size, limit: size,raw:true,include: [User], order:'created_at DESC',  where : {
+        console.log(`uid is ${uid}`)
+        let result : any= await Course.findAll({ offset: idx * size, limit: size,raw:true,include: [User], order: [['created_at', 'DESC']]
+        ,where : {
             creator_id : uid
         }})
-        //console.log(result)
+        console.log(result)
         return result;
     }
     async getMycreateCourses(uid :any ,idx:number, size :number){
-        let result : any= await Course.find({ offset: idx * size, limit: size,raw:true,include: [User], order:'created_at DESC',  where : {
+        console.log(`uid is ${uid}`)
+        let result : any= await Course.findAll({ offset: idx * size, limit: size,raw:true,include: [User], order: [['created_at', 'DESC']],  where : {
             creator_id : uid
         }})
-        //console.log(result)
+        console.log(result)
         return result;
     }
 
