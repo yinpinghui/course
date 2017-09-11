@@ -20,11 +20,16 @@ export class ActivityController {
         return result;
     }
     @Post("/api/activity")
-    async create(@Body() enroll: any){
-
-        let e = new Enroll(enroll)
-        let  result = await e.save();
-        return result
+    async create(@Req() req: any){
+        let course = req.body
+        //console.log('course is ', course)
+        let user = req.user;
+        //console.log(user)
+        course.creator_id= user.id
+        //console.log(course)
+        const _course = new Course(course)
+        let  result = await _course.save();
+        return result.toJSON();
     }
     @Post("/api/activity/:id")
     async update(@Param("id") id: number, @Body() enroll: any) {
