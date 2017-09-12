@@ -5,6 +5,7 @@ import {JsonController ,Controller} from "routing-controllers";
 import {Container, Inject, Service} from "typedi";
 import {ActivityManager} from "../service/ActivityManager";
 import {Enroll} from "../model/Enroll"
+import {Activity} from "../model/Activity"
 
 
 @Controller()
@@ -21,14 +22,11 @@ export class ActivityController {
     }
     @Post("/api/activity")
     async create(@Req() req: any){
-        let course = req.body
-        //console.log('course is ', course)
+        let activity = req.body
         let user = req.user;
-        //console.log(user)
-        course.creator_id= user.id
-        //console.log(course)
-        const _course = new Course(course)
-        let  result = await _course.save();
+        activity.creator_id= user.id
+        const _activity = new Activity(activity)
+        let  result = await _activity.save();
         return result.toJSON();
     }
     @Post("/api/activity/:id")

@@ -4,7 +4,7 @@ import {Middleware, ExpressErrorMiddlewareInterface} from "routing-controllers";
 export class GlobalErrorHandler implements ExpressErrorMiddlewareInterface {
     error(error: any, request: any, response: any, next: (err: any) => any) {
         let errorMsg = {}
-        
+        console.log(error);
         if(error.httpCode != null ){
            errorMsg =  {
               errorCode:error.httpCode,

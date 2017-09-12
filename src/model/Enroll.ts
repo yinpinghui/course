@@ -18,58 +18,41 @@ export class Enroll extends BaseModel{//extends Model<Enroll>{
     activity : Activity;
 
     @Column
-    startDate : Date;
+    startDate : Date; //报名开始时间
 
     @Column 
-    endDate : Date;
+    endDate : Date;  //报名截止时间
 
     @Column(DataType.INTEGER(11)) 
-    maxLimit : number;
+    maxLimit : number; //人数限制
 
     @Column 
-    fee : number;
+    fee : number; //费用
 
     @Column(DataType.INTEGER(1)) 
-    status : number;
+    status : number; //报名本身的状态，不是活动的状态
 
     @Column(DataType.STRING)
-    uids : string;
+    uids : string;  //目标人群
 
     @Column(DataType.STRING)
-    groupIds : string;
+    groupIds : string; // 目标人群
 
     @Column(DataType.INTEGER(1))
-    category : number;
+    category : number;  //类别
 
     @Column(DataType.INTEGER(1))
-    need_sign : number;
+    need_sign : number;  //是否需要签到
 
-    @Column
-    remark : string;
+    
 
-    @Column
+    @Column(DataType.TEXT)
     description : string;
 
-    @Column
+	@Column(DataType.TEXT)
+	remark : string;
+	
+    @Column(DataType.TEXT)
     fields : string;
     
-    // @CreatedAt
-    // created_at: Date;
-
-    // @UpdatedAt
-    // updated_at: Date;
-    
-    @DeletedAt
-    deleted_at: Date;
-
-    //  toJSON(){
-    //   let values = Object.assign({}, this.get());
-    //   Object.keys(values).forEach((key,i)=>{
-    //     if(typeof values[key] === 'object'){
-    //       values[key] = (values[key]==null?null:moment(values[key]).format("YYYY-MM-DD HH:mm:ss"));
-    //     }
-    //     values[key] = values[key]
-    //   })
-    //   return values;
-    // }
 }

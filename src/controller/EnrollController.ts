@@ -20,10 +20,13 @@ export class EnrollController {
         return result;
     }
     @Post("/api/enroll/create")
-    async create(@Body() enroll: any){
-        let e = new Enroll(enroll)
-        let  result = await e.save();
-        return result
+    async create(@Req() req: any){
+        let enroll = req.body
+        let user = req.user;
+        enroll.creator_id= user.id
+        const _enroll = new Enroll(enroll)
+        let  result = await _enroll.save();
+        return result.toJSON();
     }
     @Post("/api/enroll/:id")
     async update(@Param("id") id: number, @Body() enroll: any) {

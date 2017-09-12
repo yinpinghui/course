@@ -20,16 +20,16 @@ export class Activity extends BaseModel{
     title: string;
 
     @Column
-    headerimg: string;
+    headerimg: string;//课节的头像
     
     @Column 
-    address : string;
+    address : string;//活动（上课）地点
 
     @Column 
-    fee : number;
+    fee : number; //课节的费用
 
     @Column 
-    type : number;
+    type : number; //活动的实体类型，比如聊天型还是直播型
 
     @Column
     description : string;
@@ -38,11 +38,17 @@ export class Activity extends BaseModel{
     remark : string;
 
     @Column 
-    status : number;
+    status : number; //当前状态
 
     @Column
     startTime : Date;
 
     @Column
     endTime : Date;
+
+    @Column
+    parentid : number;
+
+    @Column 
+    parentType : string;
 }
