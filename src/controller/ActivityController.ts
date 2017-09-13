@@ -23,6 +23,8 @@ export class ActivityController {
     @Post("/api/activity")
     async create(@Req() req: any){
         let activity = req.body
+        //let parentId = req.body.parentId;
+        //let parentType = req.body.parentType
         let user = req.user;
         activity.creator_id= user.id
         const _activity = new Activity(activity)
@@ -30,7 +32,16 @@ export class ActivityController {
         return result.toJSON();
     }
     @Post("/api/activity/:id")
-    async update(@Param("id") id: number, @Body() enroll: any) {
+    async update(@Param("id") id: number, @Body() activity: any) {
        return "Updating a user...";
+    }
+    @Get("/api/activity/info/:id")
+    async info(@Param("id") id: number) {
+       return "Updating a user...";
+    }
+    @Post("/api/activity/:id/openenroll")
+    async openenroll (@Param("id") id : number){
+        
+        return 
     }
 }

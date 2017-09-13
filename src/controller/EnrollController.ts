@@ -28,7 +28,18 @@ export class EnrollController {
         let  result = await _enroll.save();
         return result.toJSON();
     }
-    @Post("/api/enroll/:id")
+    @Post("/api/enroll/:id/join")
+    async join(@Param("id") id: number,@Req() req: any){
+        let enroll = req.body
+        let user = req.user;
+        enroll.creator_id= user.id
+        //const _enroll = new Enroll(enroll)
+        //let  result = await _enroll.save();
+
+
+        return {status:"ok"}//result.toJSON();
+    }
+    @Get("/api/enroll/info/:id")
     async update(@Param("id") id: number, @Body() enroll: any) {
        
     }

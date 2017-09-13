@@ -1,8 +1,9 @@
-import {Table, Model, PrimaryKey, Column, AutoIncrement, BelongsTo, ForeignKey, Length,CreatedAt,UpdatedAt,DeletedAt,DataType} from 'sequelize-typescript';
+import {Table, Model, PrimaryKey, BelongsToMany,Column, AutoIncrement, BelongsTo, ForeignKey, Length,CreatedAt,UpdatedAt,DeletedAt,DataType} from 'sequelize-typescript';
 import {Activity} from './Activity'
 import * as moment from 'moment' 
 import {BaseModel} from "../base/BaseModel"
-
+import {User} from "./User"
+import {EnrollUser} from "./EnrollUser"
 @Table({
   tableName: 'base_enroll'
 })
@@ -54,5 +55,8 @@ export class Enroll extends BaseModel{//extends Model<Enroll>{
 	
     @Column(DataType.TEXT)
     fields : string;
-    
+ 
+	
+	@BelongsToMany(() => User, () => EnrollUser)
+	users: User[];
 }

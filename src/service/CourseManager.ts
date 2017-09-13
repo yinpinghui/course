@@ -2,11 +2,11 @@ import {Container, Inject, Service} from "typedi";
 import {client,sequelize} from "../db"
 import {Course} from "../model/Course"
 import {User} from "../model/User"
+import {Activity} from "../model/Activity"
 
 export class CourseManager {
-    
     async getCourseById( id : number){
-        let result : Course = await Course.findOne<Course>({where: {id:id}})
+        let result : Course = await Course.findOne<Course>({where: {id:id},include : [Activity]})
         return result.toJSON();
     }
     async getCourses(idx:number, size :number){
