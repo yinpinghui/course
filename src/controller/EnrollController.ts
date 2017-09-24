@@ -14,8 +14,13 @@ export class EnrollController {
     @Inject()
     enrollManager : EnrollManager;
 
-    @Get("/api/enrolls")
-    async getAll(@Req() request: Request) {
+    @Get("/api/enrolls/joined")
+    async getMyJoinAll(@Req() request: Request) {
+        let result = await this.enrollManager.getEnrolls()
+        return result;
+    }
+    @Get("/api/enrolls/created")
+    async getMycreateAll(@Req() request: Request) {
         let result = await this.enrollManager.getEnrolls()
         return result;
     }
