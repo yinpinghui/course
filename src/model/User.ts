@@ -53,5 +53,5 @@ export class User extends BaseModel{
     vip : number;
 
     @Column
-    corpId : string;
+    corpid : string;
 }
